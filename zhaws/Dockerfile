@@ -13,7 +13,7 @@ RUN \
         linux-headers \
         python3 \
     && pip3 install --no-cache-dir \
-        zhaws==${ZHAWS_VERSION} \
+        zhaws[server]==${ZHAWS_VERSION} \
     && apk del --no-cache \
         .build-dependencies
 
