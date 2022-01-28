@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start ZHAWS service for Zigbee radio
+# ==============================================================================
+SERIAL_DEVICE=$(bashio::config 'device')
+
+# Emulate serial Hardware for test & development
+if bashio::config.true 'emulate_hardware'; then
+    SERIAL_DEVICE="--mock-driver"
+fi
+
+# Send out discovery information to Home Assistant
+./discovery &
+
+# Set external config directory
+export ZHAWS_EXTERNAL_CONFIG=/data/db
+
+# Run daemon, passing external config directory in as environment variable
+python3 -m zhaws.server

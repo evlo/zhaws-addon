@@ -1,0 +1,27 @@
+version: 2022.01.27
+slug: zhaws
+name: ZHA WS
+description: Control a Zigbee network with ZHAWS
+url: https://github.com/home-assistant/hassio-addons/tree/master/zhaws
+arch:
+  - amd64
+  - i386
+  - armhf
+  - armv7
+  - aarch64
+hassio_api: true
+homeassistant: 2021.2.0b0
+#image: homeassistant/{arch}-addon-zhaws
+init: false
+options:
+  device: null
+  log_level: info
+ports:
+  8001/tcp: null
+ports_description:
+  8001/tcp: ZHAWS communication
+schema:
+  device: device(subsystem=tty)
+  log_level: list(silly|debug|verbose|http|info|warn|error)?
+stage: stable
+startup: services
