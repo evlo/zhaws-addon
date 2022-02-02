@@ -1,4 +1,4 @@
-version: 2022.01.27
+version: 2022.02.02
 slug: zhaws
 name: ZHA WS
 description: Control a Zigbee network with ZHAWS
@@ -9,6 +9,8 @@ arch:
   - armhf
   - armv7
   - aarch64
+discovery:
+  - zhaws
 hassio_api: true
 homeassistant: 2021.2.0b0
 #image: homeassistant/{arch}-addon-zhaws
