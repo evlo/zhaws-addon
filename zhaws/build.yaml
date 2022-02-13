@@ -8,4 +8,4 @@ codenotary:
   signer: notary@home-assistant.io
   base_image: notary@home-assistant.io
 args:
-  ZHAWS_VERSION: 2022.02.02
+  ZHAWS_VERSION: 2022.02.13

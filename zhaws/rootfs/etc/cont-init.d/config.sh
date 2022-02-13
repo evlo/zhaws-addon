@@ -2,34 +2,30 @@
 # ==============================================================================
 # Generate ZHAWS config file
 # ==============================================================================
-declare log_level
-declare flush_to_disk
-declare host_chassis
-declare soft_reset
+declare network_auto_start
+declare enable_quirks
+declare radio_type
+declare radio_path
+declare radio_baudrate
+declare radio_flow_control
 
-if  ! bashio::config.has_value 'log_level'; then
-    log_level=$(bashio::info.logging)
-    bashio::log.info "No log level specified, falling back to Supervisor"
-    bashio::log.info "log level (${log_level})..."
-else
-    log_level=$(bashio::config 'log_level')
-fi
-
-host_chassis=$(bashio::host.chassis)
-
-if [ "${host_chassis}" == "vm" ]; then
-    soft_reset=false
-    bashio::log.info "Virtual Machine detected, disabling soft-reset"
-else
-    soft_reset=true
-    bashio::log.info "Virtual Machine not detected, enabling soft-reset"
-fi
-
+radio_type=$(bashio::config "radio_type")
+radio_path=$(bashio::config "device")
+radio_baudrate=$(bashio::config "radio_baudrate")
+radio_flow_control=$(bashio::config "radio_flow_control")
+network_auto_start=$(bashio::config "network_auto_start")
+enable_quirks=$(bashio::config "enable_quirks")
 
 # Generate config
 bashio::var.json \
-    log_level "${log_level}" \
-    soft_reset "^${soft_reset}" \
+    radio_type "${radio_type}" \
+    radio_path "${radio_path}" \
+    radio_baudrate "${radio_baudrate}" \
+    radio_flow_control "${radio_flow_control}" \
+    network_auto_start "${network_auto_start}" \
+    enable_quirks "${enable_quirks}" \
+    host "$(hostname)" \
+    port "^8001" \
     | tempio \
         -template /usr/share/tempio/zhaws.conf \
-        -out /etc/zhaws.json
+        -out /etc/zhaws_config.json

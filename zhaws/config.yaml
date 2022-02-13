@@ -1,4 +1,4 @@
-version: 2022.02.02
+version: 2022.02.13
 slug: zhaws
 name: ZHA WS
 description: Control a Zigbee network with ZHAWS
@@ -18,6 +18,11 @@ init: false
 options:
   device: null
   log_level: info
+  radio_type: null
+  radio_baudrate: null
+  radio_flow_control: null
+  network_auto_start: true
+  enable_quirks: true
 ports:
   8001/tcp: null
 ports_description:
@@ -25,5 +30,10 @@ ports_description:
 schema:
   device: device(subsystem=tty)
   log_level: list(silly|debug|verbose|http|info|warn|error)?
+  radio_type: list(ezsp|xbee|deconz|znp|zigate)
+  radio_baudrate: list(2400|4800|9600|14400|19200|38400|57600|115200|128000|256000)
+  radio_flow_control: list(hardware|software)
+  network_auto_start: bool
+  enable_quirks: bool
 stage: stable
 startup: services
