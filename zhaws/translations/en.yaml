@@ -1,0 +1,19 @@
+configuration:
+  device:
+    name: Device
+    description: Path for the Zigbee coordinator device
+  radio_type:
+    name: Radio Type
+    description: The type of the Zigbee coordinator
+  radio_baudrate:
+    name: Baudrate
+    description: The baudrate of the Zigbee coordinator
+  radio_flow_control:
+    name: Flow Control
+    description: The flow control setting to use for the Zigbee coordinator
+  network_auto_start:
+    name: Auto Start
+    description: Automatically start the Zigbee network when the addon is started
+  enable_quirks:
+    name: Enable Quirks
+    description: Enable quirks for ZHAWS
